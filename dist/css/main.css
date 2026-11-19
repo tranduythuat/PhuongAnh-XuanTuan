@@ -1,0 +1,778 @@
+@charset "UTF-8";
+@font-face {
+  font-family: "1FTV-BLUSHING-ROSE";
+  src: url("../../assets/fonts/1FTV-BLUSHING-ROSE.TTF") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "SVN-AARON-SCRIPT";
+  src: url("../../assets/fonts/SVN-AARON-SCRIPT.OTF") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "SVN-Gotham";
+  src: url("../../assets/fonts/SVN-Gotham.woff2") format("woff2"), url("../../assets/fonts/SVN-Gotham.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "SVN-GothamLight";
+  src: url("../../assets/fonts/SVN-GothamLight.woff2") format("woff2"), url("../../assets/fonts/SVN-GothamLight.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: rgb(255, 255, 255);
+  font-size: 12px;
+  margin: 0;
+  overflow-x: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.container {
+  max-width: 500px;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  background-color: hsla(0, 0%, 93%, 0.848);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  color: #ffffff;
+  display: none;
+  opacity: 0;
+}
+
+.music-box {
+  display: flex;
+  position: fixed;
+  bottom: 10px;
+  right: 1%;
+  cursor: pointer;
+}
+.music-box .label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  transform-origin: right center;
+  position: absolute;
+  right: 30%;
+  max-width: 300px;
+  width: 198%;
+  height: 100%;
+  overflow: hidden;
+}
+.music-box .label .musicLabel {
+  width: 100%;
+  text-align: left;
+  font-size: 12px;
+  background-color: #ffffff;
+  color: #000000;
+  padding: 4% 15%;
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
+  border: 1px solid rgba(48, 44, 42, 0.124);
+  opacity: 0.9;
+}
+.music-box .player {
+  max-width: 55px;
+  width: 105%;
+  aspect-ratio: 1;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.player #iconSvg {
+  width: 100%;
+  height: 100%;
+}
+
+.spin {
+  animation: spin 4s linear infinite;
+}
+
+/* Định nghĩa hoạt ảnh xoay */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@media (max-width: 500px) {
+  .player {
+    max-width: 11vw;
+  }
+  .text-title {
+    font-size: 11.6vw;
+  }
+}
+.shake-text {
+  animation: shakeWithPause 3s ease-in-out infinite;
+}
+
+@keyframes shakeWithPause {
+  /* Rung lắc nhẹ - kéo dài hơn */
+  0%, 100% {
+    transform: translateX(0);
+  }
+  3% {
+    transform: translateX(-3px) rotate(-1deg);
+  }
+  6% {
+    transform: translateX(3px) rotate(1deg);
+  }
+  9% {
+    transform: translateX(-3px) rotate(-1deg);
+  }
+  12% {
+    transform: translateX(3px) rotate(1deg);
+  }
+  15% {
+    transform: translateX(-3px) rotate(-1deg);
+  }
+  18% {
+    transform: translateX(3px) rotate(1deg);
+  }
+  21% {
+    transform: translateX(-2px) rotate(-0.5deg);
+  }
+  24% {
+    transform: translateX(2px) rotate(0.5deg);
+  }
+  27% {
+    transform: translateX(-2px) rotate(-0.5deg);
+  }
+  30% {
+    transform: translateX(2px) rotate(0.5deg);
+  }
+  33% {
+    transform: translateX(-1px) rotate(-0.3deg);
+  }
+  36% {
+    transform: translateX(1px) rotate(0.3deg);
+  }
+  39% {
+    transform: translateX(-1px) rotate(-0.3deg);
+  }
+  42% {
+    transform: translateX(0) rotate(0deg);
+  }
+  /* Nghỉ một đoạn */
+  42%, 100% {
+    transform: translateX(0) rotate(0deg);
+  }
+}
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #eae0cf;
+  color: white;
+  padding: 1rem;
+}
+
+section {
+  padding: 0;
+}
+
+.image-wrapper {
+  perspective: 1000px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 100px 0;
+}
+.image-wrapper img {
+  width: 320px;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+}
+
+.animate-flip {
+  transform-origin: left center;
+  transform: rotateY(-120deg) scale(0.9);
+  opacity: 0;
+  filter: brightness(0.6);
+  backface-visibility: hidden;
+  transition: none;
+}
+
+.animate-flip.active {
+  opacity: 1;
+  transform: rotateY(0deg);
+}
+
+.hero {
+  width: 100%;
+  position: relative;
+  aspect-ratio: 500/700;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.538), rgba(0, 0, 0, 0), rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), url("../../assets/images/couple/1.jpg") no-repeat bottom/cover;
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+  text-align: center;
+}
+.hero .logo {
+  position: absolute;
+  top: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.hero .logo img {
+  width: 100%;
+  max-width: 60px;
+  height: auto;
+}
+.hero .hero-text {
+  color: #ffffff;
+  margin-bottom: 12%;
+}
+.hero .hero-text .invitation-text {
+  font-family: "1FTV-BLUSHING-ROSE", sans-serif;
+  font-weight: 300;
+  font-size: 28px;
+  text-transform: uppercase;
+  letter-spacing: 16px;
+  text-align: center;
+  display: inline-block;
+  padding-left: 16px;
+}
+.hero .hero-text p {
+  font-family: "1FTV-BLUSHING-ROSE", sans-serif;
+  font-size: 12px;
+  padding-top: 5%;
+  letter-spacing: 1.2px;
+}
+@media (max-width: 500px) {
+  .hero .logo img {
+    max-width: 12vw;
+  }
+  .hero .hero-text .invitation-text {
+    font-size: 5.6vw;
+    letter-spacing: 3.2vw;
+  }
+  .hero .hero-text p {
+    font-size: 2.4vw;
+    letter-spacing: 0.24vw;
+  }
+}
+
+.intro {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  color: #000000;
+}
+.intro h2.couple-names {
+  font-size: 26px;
+  letter-spacing: 1.2px;
+  font-family: "1FTV-BLUSHING-ROSE", sans-serif;
+  font-weight: 300;
+  text-transform: uppercase;
+  padding-top: 25%;
+  padding-bottom: 20px;
+}
+.intro .family-info {
+  font-family: "SVN-GothamLight", sans-serif;
+  font-size: 12px;
+  line-height: 1.5;
+  padding-bottom: 25%;
+}
+.intro .intro-image {
+  width: 100%;
+  background-color: #c2baae;
+  perspective: 1000px;
+  padding-bottom: 15%;
+}
+.intro .intro-image img {
+  width: 95%;
+  height: auto;
+  margin: 3% 0;
+}
+.intro .intro-image .intro-text {
+  color: #000000;
+  font-family: "SVN-AARON-SCRIPT", sans-serif;
+  font-size: 22px;
+  margin-top: 10%;
+}
+.intro .logo {
+  padding: 15% 0;
+}
+.intro .logo img {
+  max-width: 60px;
+  width: 100%;
+  height: auto;
+}
+@media (max-width: 500px) {
+  .intro h2.couple-names {
+    font-size: 5.2vw;
+    letter-spacing: 0.24vw;
+  }
+  .intro .family-info p {
+    font-size: 2.4vw;
+  }
+  .intro .intro-image .intro-text {
+    font-size: 4.4vw;
+  }
+  .intro .logo img {
+    max-width: 12vw;
+  }
+}
+
+.wedding-info {
+  width: 100%;
+  text-align: center;
+  color: #000000;
+}
+.wedding-info .subtext {
+  font-family: "SVN-GothamLight", sans-serif;
+  text-transform: uppercase;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.wedding-info .venue {
+  padding: 10% 0;
+}
+.wedding-info .venue h4 {
+  font-family: "SVN-GothamLight", sans-serif;
+  text-transform: uppercase;
+  font-weight: 300;
+  font-size: 14px;
+}
+.wedding-info .venue h2.venue-name {
+  font-family: "SVN-Gotham", sans-serif;
+  font-size: 28px;
+  text-transform: uppercase;
+}
+.wedding-info .venue p.venue-address {
+  font-family: "SVN-GothamLight", sans-serif;
+  text-transform: uppercase;
+  font-weight: 300;
+  font-size: 12px;
+  padding: 5px 0 10px;
+}
+.wedding-info .venue .btn-map {
+  display: block;
+  font-family: "SVN-GothamLight", sans-serif;
+  font-size: 16px;
+  text-decoration: none;
+  color: #000000;
+  border: solid 1px #000000;
+  border-radius: 15px;
+  text-transform: uppercase;
+  line-height: 1.5;
+  max-width: 250px;
+  width: 100%;
+  margin: 0 auto;
+  transition: 0.3s ease;
+}
+.wedding-info .venue .btn-map:hover {
+  background-color: #000000;
+  color: #ffffff;
+}
+.wedding-info .date-time h2 {
+  font-size: 38px;
+  font-weight: 300;
+  padding: 20% 0 10%;
+  font-family: "1FTV-BLUSHING-ROSE", sans-serif;
+  letter-spacing: 1.3px;
+}
+.wedding-info .date-time .timeline {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 20%;
+}
+.wedding-info .date-time .timeline .timeline-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  position: relative;
+  padding: 2%;
+  font-family: "SVN-AARON-SCRIPT", sans-serif;
+}
+.wedding-info .date-time .timeline .timeline-item .title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+}
+.wedding-info .date-time .timeline .timeline-item .hour {
+  font-size: 20px;
+}
+.wedding-info .date-time .timeline .timeline-item .dot-icon-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10% 0;
+}
+.wedding-info .date-time .timeline .timeline-item .dot-icon-box .dot-icon {
+  max-width: 10px;
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background-color: #000000;
+  position: relative;
+}
+.wedding-info .date-time .timeline .timeline-item .dot-icon-box::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background: #000000;
+  z-index: 1;
+  transform: translateX(50%);
+}
+.wedding-info .date-time .timeline .timeline-item .image-icon {
+  margin: 0 auto;
+  max-width: 60px;
+  width: 100%;
+  aspect-ratio: 1/1.2;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.wedding-info .date-time .timeline .timeline-item .image-icon img {
+  width: 100%;
+  height: auto;
+}
+.wedding-info .date-time .timeline .timeline-item:nth-child(2) .dot-icon-box::after {
+  display: none;
+}
+.wedding-info .date-time .timeline .timeline-item:nth-child(2) .image-icon {
+  max-width: 72px;
+}
+@media (max-width: 500px) {
+  .wedding-info .subtext {
+    font-size: 2.8vw;
+  }
+  .wedding-info .venue h4 {
+    font-size: 2.8vw;
+  }
+  .wedding-info .venue h2.venue-name {
+    font-size: 5.6vw;
+  }
+  .wedding-info .venue p.venue-address {
+    font-size: 2.4vw;
+  }
+  .wedding-info .venue .btn-map {
+    font-size: 3.2vw;
+    border-radius: 3vw;
+    max-width: 50vw;
+  }
+  .wedding-info .date-time h2 {
+    font-size: 7.6vw;
+  }
+  .wedding-info .date-time .timeline .timeline-item .title {
+    font-size: 4vw;
+  }
+  .wedding-info .date-time .timeline .timeline-item .hour {
+    font-size: 4vw;
+  }
+  .wedding-info .date-time .timeline .timeline-item .dot-icon-box .dot-icon {
+    max-width: 2vw;
+  }
+  .wedding-info .date-time .timeline .timeline-item .image-icon {
+    max-width: 12vw;
+  }
+  .wedding-info .date-time .timeline .timeline-item:nth-child(2) .image-icon {
+    max-width: 14.4vw;
+  }
+}
+
+.gallery {
+  width: 100%;
+  position: relative;
+}
+.gallery .gallery-row:first-child {
+  display: flex;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.gallery .gallery-row:first-child div:first-child,
+.gallery .gallery-row:first-child div:last-child {
+  perspective: 1000px;
+  flex: 0 0 32%;
+  /* grow=0, shrink=0, basis=30% */
+  z-index: 3;
+}
+.gallery .gallery-row:first-child div:first-child img,
+.gallery .gallery-row:first-child div:last-child img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.gallery .gallery-row:first-child div.text-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+  font-size: 12px;
+  font-family: "SVN-AARON-SCRIPT", sans-serif;
+  padding-left: 3%;
+  line-height: 1.5;
+  color: #000000;
+}
+.gallery .gallery-row:last-child {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.gallery .gallery-row:last-child .img-box {
+  width: 36%;
+}
+.gallery .gallery-row:last-child .img-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.gallery .image-overlay {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+}
+.gallery .image-overlay img {
+  width: 100%;
+  height: auto;
+}
+@media (max-width: 500px) {
+  .gallery .gallery-row:first-child div.text-box {
+    font-size: 2.4vw;
+  }
+}
+
+.gallery-01 {
+  width: 100%;
+  padding: 30% 0;
+  position: relative;
+  color: #000000;
+}
+.gallery-01 .gallery-row {
+  display: flex;
+  justify-content: center;
+}
+.gallery-01 .gallery-row .gallery-img {
+  width: 100%;
+}
+.gallery-01 .gallery-row .gallery-img img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+.gallery-01 .gallery-row div {
+  flex: 0 0 50%;
+}
+.gallery-01 .gallery-row:first-child {
+  margin-bottom: 30%;
+}
+.gallery-01 .gallery-row:first-child .gallery-text {
+  font-family: "SVN-AARON-SCRIPT", sans-serif;
+  font-size: 16px;
+  padding: 5%;
+  display: flex;
+  justify-content: end;
+  flex-direction: column;
+  text-align: left;
+}
+.gallery-01 .gallery-row:last-child .gallery-text {
+  font-family: "SVN-AARON-SCRIPT", sans-serif;
+  font-size: 36px;
+  padding-left: 5%;
+  display: flex;
+  align-items: end;
+}
+.gallery-01 .image-overlay {
+  position: absolute;
+  max-width: 180px;
+  width: 100%;
+  aspect-ratio: 180/400;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.gallery-01 .image-overlay img {
+  width: 100%;
+  object-fit: cover;
+}
+@media (max-width: 500px) {
+  .gallery-01 .gallery-row:first-child .gallery-text {
+    font-size: 3.2vw;
+  }
+  .gallery-01 .gallery-row:last-child .gallery-text {
+    font-size: 7.2vw;
+  }
+  .gallery-01 .image-overlay {
+    max-width: 36vw;
+  }
+}
+
+.rsvp {
+  padding: 5%;
+}
+.rsvp p.title {
+  font-family: "SVN-Gotham", sans-serif;
+  text-align: center;
+  font-size: 28px;
+  color: #000000;
+  font-weight: 300;
+  padding-bottom: 10%;
+}
+.rsvp form {
+  width: 100%;
+}
+.rsvp .form-group {
+  width: 100%;
+  margin-bottom: 10px;
+}
+.rsvp .form-group input[type=radio] {
+  display: none;
+}
+.rsvp .form-group .radio-button {
+  font-family: "SVN-GothamLight", sans-serif;
+  font-size: 16px;
+  line-height: 1.8;
+  padding: 0 4%;
+  border-radius: 15px;
+  border: 1px solid #000000;
+  color: #000000;
+  cursor: pointer;
+}
+.rsvp .form-group input[type=radio]:hover + .radio-button {
+  background-color: #000000;
+  color: #ffffff;
+  transition: 0.3s ease-in;
+}
+.rsvp .form-group input[type=radio]:checked + .radio-button {
+  background-color: #000000;
+  color: #ffffff;
+  border-color: #eae0cf;
+  transition: 0.3s ease-in;
+}
+.rsvp .form-group input.input-text,
+.rsvp .form-group textarea.input-text {
+  width: 100%;
+  line-height: 2;
+  padding: 0 2%;
+  border-radius: 15px;
+  border: 1px solid #000000;
+  text-decoration: none;
+  box-sizing: border-box;
+  outline: none;
+  font-size: 14px;
+}
+.rsvp .form-group input.input-text::placeholder {
+  font-family: "SVN-GothamLight", sans-serif;
+}
+.rsvp .form-group textarea.input-text {
+  font-family: "SVN-GothamLight", sans-serif;
+  font-size: 0.8em;
+  width: 100%;
+  height: 86px;
+  border-radius: 15px;
+  border: 1px solid #eae0cf;
+  padding: 10px;
+  box-sizing: border-box;
+  outline: none;
+}
+.rsvp .form-group.options-group {
+  display: flex;
+  justify-content: space-around;
+}
+.rsvp .dietary-box {
+  text-align: center;
+}
+.rsvp .dietary-box p {
+  font-family: "SVN-GothamLight", sans-serif;
+  padding: 20px 0;
+}
+.rsvp .form-actions {
+  display: flex;
+  justify-content: center;
+}
+.rsvp .form-actions button.btn {
+  font-family: "SVN-GothamLight", sans-serif;
+  background-color: rgb(80, 77, 77);
+  border: none;
+  color: #fff;
+  padding: 0 5%;
+  line-height: 1.8;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 15px;
+  font-size: 16px;
+  cursor: pointer;
+}
+.rsvp .form-actions button.btn:hover {
+  color: #fff;
+  background-color: #000000;
+}
+@media (max-width: 500px) {
+  .rsvp p.title {
+    font-size: 5.6vw;
+  }
+  .rsvp .form-group .radio-button {
+    font-size: 3.2vw;
+    border-radius: 3vw;
+  }
+  .rsvp .form-group input.input-text {
+    border-radius: 3vw;
+    font-size: 2.8vw;
+  }
+  .rsvp .form-actions button.btn {
+    border-radius: 3vw;
+    font-size: 3.2vw;
+  }
+}
+
+.end {
+  width: 100%;
+  aspect-ratio: 500/800;
+  background: linear-gradient(to bottom, hsl(0, 0%, 93%), hsla(0, 0%, 93%, 0.276), hsla(0, 0%, 93%, 0), hsla(0, 0%, 93%, 0)), url("../../assets/images/couple/8.jpg") no-repeat center/cover;
+  margin-top: 20%;
+  display: flex;
+  padding-top: 20%;
+  justify-content: flex-start;
+}
+.end .text-overlay {
+  color: #000000;
+  transform: translateX(5%) rotate(90deg);
+  font-size: 36px;
+  letter-spacing: 3px;
+  text-align: center;
+  white-space: nowrap;
+  font-family: "1FTV-BLUSHING-ROSE", sans-serif;
+  /* tránh xuống dòng */
+}
+
+/*# sourceMappingURL=main.css.map */

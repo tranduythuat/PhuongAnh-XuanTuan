@@ -1,0 +1,85 @@
+@use "../variables" as *;
+@use "../mixins" as *;
+
+.gallery-01 {
+    width: 100%;
+    padding: 30% 0;
+    position: relative;
+    color: $text-color;
+
+    .gallery-row {
+        display: flex;
+        justify-content: center;
+
+        .gallery-img {
+            width: 100%;
+
+            img {
+                width: 100%;
+                height: auto;
+                object-fit: cover;
+            }
+        }
+
+        div {
+            flex: 0 0 50%;
+        }
+    }
+
+    .gallery-row:first-child {
+        margin-bottom: 30%;
+
+        .gallery-text {
+            font-family: $font-svn-aaron;
+            font-size: 16px;
+            padding: 5%;
+            display: flex;
+            justify-content: end;
+            flex-direction: column;
+            text-align: left;
+        }
+    }
+
+    .gallery-row:last-child {
+        .gallery-text {
+            font-family: $font-svn-aaron;
+            font-size: 36px;
+            padding-left: 5%;
+            display: flex;
+            align-items: end;
+        }
+    }
+
+    .image-overlay {
+        position: absolute;
+        max-width: 180px;
+        width: 100%;
+        aspect-ratio: 180 / 400;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+
+        img {
+            width: 100%;
+            object-fit: cover;
+        }
+    }
+
+    @media (max-width: 500px) {
+        .gallery-row:first-child {
+            .gallery-text {
+                font-size: calc((16 / 500) * 100vw);
+            }
+        }
+
+        .gallery-row:last-child {
+            .gallery-text {
+                font-size: calc((36 / 500) * 100vw);
+            }
+        }
+
+        .image-overlay {
+            max-width: calc((180 / 500) * 100vw);
+        }
+    }
+}

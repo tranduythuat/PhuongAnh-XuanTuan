@@ -1,0 +1,146 @@
+@use "../variables" as *;
+@use "../mixins" as *;
+
+.rsvp {
+    padding: 5%;
+
+    p.title {
+        font-family: $font-svn-gotham;
+        text-align: center;
+        font-size: 28px;
+        color: $text-color;
+        font-weight: 300;
+        padding-bottom: 10%;
+    }
+
+    form {
+        width: 100%;
+    }
+
+    .form-group {
+        width: 100%;
+        margin-bottom: 10px;
+
+        input[type="radio"] {
+            display: none;
+        }
+
+        .radio-button {
+            font-family: $font-svn-gothamlight;
+            font-size: 16px;
+            line-height: 1.8;
+            padding: 0 4%;
+            border-radius: 15px;
+            border: 1px solid $text-color;
+            color: $text-color;
+            cursor: pointer;
+        }
+
+        input[type="radio"]:hover+.radio-button {
+            background-color: $text-color;
+            color: #ffffff;
+            transition: .3s ease-in;
+
+        }
+
+        input[type="radio"]:checked+.radio-button {
+            background-color: $text-color;
+            color: #ffffff;
+            border-color: $primary-color;
+            transition: .3s ease-in;
+        }
+
+        input.input-text,
+        textarea.input-text {
+            width: 100%;
+            line-height: 2;
+            padding: 0 2%;
+            border-radius: 15px;
+            border: 1px solid $text-color;
+            text-decoration: none;
+            box-sizing: border-box;
+            outline: none;
+            font-size: 14px;
+        }
+
+        input.input-text::placeholder {
+            font-family: $font-svn-gothamlight;
+        }
+
+        textarea.input-text {
+            font-family: $font-svn-gothamlight;
+            font-size: .8em;
+            width: 100%;
+            height: 86px;
+            border-radius: 15px;
+            border: 1px solid $primary-color;
+            padding: 10px;
+            box-sizing: border-box;
+            outline: none;
+        }
+    }
+
+    .form-group.options-group {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .dietary-box {
+        text-align: center;
+
+        p {
+            font-family: $font-svn-gothamlight;
+            padding: 20px 0;
+        }
+    }
+
+    .form-actions {
+        display: flex;
+        justify-content: center;
+
+        button.btn {
+            font-family: $font-svn-gothamlight;
+            background-color: rgb(80, 77, 77);
+            border: none;
+            color: #fff;
+            padding: 0 5%;
+            line-height: 1.8;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            border-radius: 15px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button.btn:hover {
+            color: #fff;
+            background-color: $text-color;
+        }
+    }
+
+    @media (max-width: 500px) {
+        p.title {
+            font-size: calc((28 / 500) * 100vw);
+        }
+
+        .form-group {
+            .radio-button {
+                font-size: calc((16 / 500) * 100vw);
+                border-radius: calc((15 / 500) * 100vw);
+            }
+
+            input.input-text {
+                border-radius: calc((15 / 500) * 100vw);
+                font-size: calc((14 / 500) * 100vw);
+            }
+        }
+
+        .form-actions {
+            button.btn {
+                border-radius: calc((15 / 500) * 100vw);
+                font-size: calc((16 / 500) * 100vw);
+            }
+        }
+    }
+}

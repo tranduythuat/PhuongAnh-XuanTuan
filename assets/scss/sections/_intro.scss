@@ -1,0 +1,83 @@
+@use "../variables" as *;
+@use "../mixins" as *;
+
+.intro {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    color: $text-color;
+
+    h2.couple-names {
+        font-size: 26px;
+        letter-spacing: 1.2px;
+        font-family: $font-hero;
+        font-weight: 300;
+        text-transform: uppercase;
+        padding-top: 25%;
+        padding-bottom: 20px;
+    }
+
+    .family-info {
+        font-family: $font-svn-gothamlight;
+        font-size: 12px;
+        line-height: 1.5;
+        padding-bottom: 25%;
+    }
+
+    .intro-image {
+        width: 100%;
+        background-color: #c2baae;
+        perspective: 1000px;
+        padding-bottom: 15%;
+
+        img {
+            width: 95%;
+            height: auto;
+            margin: 3% 0;
+        }
+
+        .intro-text {
+            color: $text-color;
+            font-family: $font-svn-aaron;
+            font-size: 22px;
+            margin-top: 10%;
+        }
+    }
+
+    .logo {
+        padding: 15% 0;
+
+        img {
+            max-width: 60px;
+            width: 100%;
+            height: auto;
+        }
+    }
+
+    @media (max-width: 500px) {
+        h2.couple-names {
+            font-size: calc((26 / 500) * 100vw);
+            letter-spacing: calc((1.2 / 500) * 100vw);
+        }
+
+        .family-info {
+            p {
+                font-size: calc((12 / 500) * 100vw);
+            }
+        }
+
+        .intro-image {
+            .intro-text {
+                font-size: calc((22 / 500) * 100vw);
+            }
+        }
+
+        .logo {
+            img {
+                max-width: calc((60 / 500) * 100vw);
+            }
+        }
+    }
+}

@@ -1,0 +1,26 @@
+@use "../variables" as *;
+@use "../mixins" as *;
+
+.end {
+    width: 100%;
+    aspect-ratio: 500 / 800;
+    background: linear-gradient(to bottom, hsl(0, 0%, 93%), hsla(0, 0%, 93%, 0.276), hsla(0, 0%, 93%, 0), hsla(0, 0%, 93%, 0)),
+        url('../../assets/images/couple/8.jpg') no-repeat center / cover;
+    // position: relative;
+    margin-top: 20%;
+    display: flex;
+    padding-top: 20%;
+    justify-content: flex-start;
+
+    .text-overlay {
+        // position: relative;
+        color: $text-color;
+        transform: translateX(5%) rotate(90deg);
+        font-size: 36px;
+        letter-spacing: 3px;
+        text-align: center;
+        white-space: nowrap;
+        font-family: $font-hero;
+        /* tránh xuống dòng */
+    }
+}
