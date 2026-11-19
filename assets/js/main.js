@@ -222,15 +222,16 @@
     hasInitializedMainContent = true;
 
     // initScrollPage();
+    loadGuest();
     initAnimations();
-    initSwiper();
+    // initSwiper();
     initMusic();
     // initDresscodeAnimation();
     initTimeline();
     // initFAQ();
     initRSVP();
-    initQrModal();
-    startCountdown(new Date("2026-12-12T18:00:00"));
+    // initQrModal();
+    // startCountdown(new Date("2026-12-12T18:00:00"));
     ScrollTrigger.refresh();
   }
 
@@ -707,9 +708,7 @@
     const {
       name,
       confirm,
-      guest_number,
-      relation,
-      wish,
+      phone,
     } = data;
 
     // =========================
@@ -725,14 +724,14 @@
       didOpen: () => Swal.showLoading(),
     });
 
-    const sheetURL = `/exec?sheet=${sheet}`;
+    const sheetURL = `https://script.google.com/macros/s/AKfycbwcT26NPSv6MaM4PV9FVLEsYe1EXSrLf3OejCnw_ztlqTE1Z1FaqaDmyrk-R8M7e1ZG/exec?sheet=${sheet}`;
 
     const controller = new AbortController();
 
     const timeout = setTimeout(() => { controller.abort(); }, 15000);
 
     try {
-      const body = new URLSearchParams({ name, confirm, guest_number, relation, wish, });
+      const body = new URLSearchParams({ name, confirm, phone, });
       const res = await fetch(sheetURL, {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8", },
@@ -797,13 +796,50 @@
 
   function initRSVP() {
     const form = document.forms["rsvpForm"];
-    // const formNhaTrai = document.forms["rsvpFormNhaTrai"];
+    const formNhaTrai = document.forms["rsvpFormNhaTrai"];
     if (form) {
-      form.addEventListener("submit", (e) => handleFormSubmit(e, "vi", "confirm"));
+      form.addEventListener("submit", (e) => handleFormSubmit(e, "vi", "nha-gai"));
     }
-    // if (formNhaTrai) {
-    //   formNhaTrai.addEventListener("submit", (e) => handleFormSubmit(e, "vi", "nha-trai"));
-    // }
+    if (formNhaTrai) {
+      formNhaTrai.addEventListener("submit", (e) => handleFormSubmit(e, "vi", "nha-trai"));
+    }
+  }
+
+  async function loadGuest() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const inviteCode = urlParams.get("invite");
+    const inviteText = document.querySelector('.invite-text');
+
+    if (!inviteCode) {
+      if (inviteText) {
+        inviteText.classList.add('is-generic');
+      }
+      return;
+    }
+
+    if (inviteText) {
+      inviteText.classList.remove('is-generic');
+    }
+
+    const response = await fetch(
+      'https://opensheet.elk.sh/1ZnwxZn9UAVa-WxXunCMSuqVpg9pc-w1jri4kerAqIN4/T%C3%AAn%20kh%C3%A1ch%20m%E1%BB%9Di'
+    );
+
+    const data = await response.json();
+    console.log('--- DATA ---', data);
+    // Tìm khách mời
+    const guest = data.find(
+      row =>
+        row.slug &&
+        row.slug.trim() === inviteCode
+    );
+
+    // Đổ tên vào giao diện
+    if (guest) {
+      inviteText.insertAdjacentHTML("beforeend", `Trân trọng kính mời<br> <span class="guest-name">${guest.name}</span>`);
+    } else {
+      return
+    }
   }
 
   function initAnimations() {

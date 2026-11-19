@@ -6,6 +6,12 @@
   font-style: normal;
 }
 @font-face {
+  font-family: "UVNKECHUYEN1";
+  src: url("../../assets/fonts/UVNKECHUYEN1.TTF") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
   font-family: "SVN-AARON-SCRIPT";
   src: url("../../assets/fonts/SVN-AARON-SCRIPT.OTF") format("truetype");
   font-weight: normal;
@@ -304,7 +310,18 @@ section {
   font-family: "SVN-GothamLight", sans-serif;
   font-size: 12px;
   line-height: 1.5;
-  padding-bottom: 25%;
+  padding-bottom: 10%;
+}
+.intro .invite-text {
+  margin-bottom: 15%;
+  font-family: "SVN-GothamLight", sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+}
+.intro .invite-text .guest-name {
+  font-family: "UVNKECHUYEN1", sans-serif;
+  font-size: 28px;
+  font-weight: 300;
 }
 .intro .intro-image {
   width: 100%;
@@ -338,6 +355,12 @@ section {
   }
   .intro .family-info p {
     font-size: 2.4vw;
+  }
+  .intro .invite-text {
+    font-size: 3.2vw;
+  }
+  .intro .invite-text .guest-name {
+    font-size: 5.6vw;
   }
   .intro .intro-image .intro-text {
     font-size: 4.4vw;
