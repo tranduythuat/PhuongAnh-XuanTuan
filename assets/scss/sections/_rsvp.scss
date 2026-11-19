@@ -100,9 +100,9 @@
 
         button.btn {
             font-family: $font-svn-gothamlight;
-            background-color: rgb(80, 77, 77);
-            border: none;
-            color: #fff;
+            background-color: #cccccb;
+            border: 1px solid $text-color;
+            color: $text-color;
             padding: 0 5%;
             line-height: 1.8;
             text-align: center;

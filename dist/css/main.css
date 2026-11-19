@@ -327,7 +327,7 @@ section {
   padding: 15% 0;
 }
 .intro .logo img {
-  max-width: 60px;
+  max-width: 88px;
   width: 100%;
   height: auto;
 }
@@ -343,7 +343,7 @@ section {
     font-size: 4.4vw;
   }
   .intro .logo img {
-    max-width: 12vw;
+    max-width: 17.6vw;
   }
 }
 
@@ -723,9 +723,9 @@ section {
 }
 .rsvp .form-actions button.btn {
   font-family: "SVN-GothamLight", sans-serif;
-  background-color: rgb(80, 77, 77);
-  border: none;
-  color: #fff;
+  background-color: #cccccb;
+  border: 1px solid #000000;
+  color: #000000;
   padding: 0 5%;
   line-height: 1.8;
   text-align: center;
