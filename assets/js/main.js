@@ -845,7 +845,7 @@
 
       const options = {
         delay: parseFloat(el.dataset.animateDelay) || 0,
-        duration: parseFloat(el.dataset.animateDuration) || 1,
+        duration: parseFloat(el.dataset.animateDuration) || 1.5,
         scrollStart: el.dataset.animateScrollStart || "top 85%",
       };
 

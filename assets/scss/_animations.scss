@@ -5,6 +5,7 @@
     justify-content: center;
     align-items: center;
     margin: 100px 0;
+
     img {
         width: 320px;
         border-radius: 16px;
@@ -13,7 +14,8 @@
 }
 
 // Hiệu ứng flip-in 3D
-.animate-flip {
+.animate-flip,
+.animate-flip-yoyo {
     transform-origin: left center;
     transform: rotateY(-120deg) scale(0.9);
     opacity: 0;
@@ -22,7 +24,8 @@
     transition: none;
 }
 
-.animate-flip.active {
+.animate-flip.active,
+.animate-flip-yoyo.active {
     opacity: 1;
     transform: rotateY(0deg);
 }
@@ -40,7 +43,7 @@
 //     top: 100px;
 //     border-radius: 12px;
 // }
-  
+
 // .red   { background: #e74c3c; }
 // .blue  { background: #3498db; }
 // .green { background: #2ecc71; }
