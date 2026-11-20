@@ -238,7 +238,7 @@ section {
   width: 100%;
   position: relative;
   aspect-ratio: 500/700;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.538), rgba(0, 0, 0, 0), rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), url("../../assets/images/couple/1.jpg") no-repeat bottom/cover;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.538), rgba(0, 0, 0, 0), rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), url("https://pub-d341ea7ec201435598469d75d8c4a056.r2.dev/PhuongAnh-XuanTuan/couple/1.jpg") no-repeat bottom/cover;
   display: flex;
   justify-content: flex-end;
   flex-direction: column;
@@ -783,7 +783,7 @@ section {
 .end {
   width: 100%;
   aspect-ratio: 500/800;
-  background: linear-gradient(to bottom, hsl(0, 0%, 93%), hsla(0, 0%, 93%, 0.276), hsla(0, 0%, 93%, 0), hsla(0, 0%, 93%, 0)), url("../../assets/images/couple/8.jpg") no-repeat center/cover;
+  background: linear-gradient(to bottom, hsl(0, 0%, 93%), hsla(0, 0%, 93%, 0.276), hsla(0, 0%, 93%, 0), hsla(0, 0%, 93%, 0)), url("https://pub-d341ea7ec201435598469d75d8c4a056.r2.dev/PhuongAnh-XuanTuan/couple/8.jpg") no-repeat center/cover;
   margin-top: 20%;
   display: flex;
   padding-top: 20%;
